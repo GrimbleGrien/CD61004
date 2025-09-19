@@ -7,6 +7,15 @@ PRINT *, "Hi"
 WRITE(*,*) "Hi"
 ```
 Print in Fortran is asynchronous: the text is buffered, and different ranks can flush to the terminal in unpredictable order, even though your barriers are correct.
+```f90
+    do i=0,size-1
+    if(i==rank) then
+        print *, "hello", rank
+        call flush()    ! I/O is async in fortran
+    endif
+    call mpi_barrier(mpi_comm_world, err)
+    enddo
+```
 ## file handling
 open close read write
 ```f90
@@ -17,7 +26,7 @@ write(11, *) var1, var2, ...
 close(10)
 close(11)
 ```
-## stck and heap
+## stack and heap
 ```f90
 integer,parameter ::n=100
 real :: a(n,n), b(n,n), c(n,n), d(n,n), temp
