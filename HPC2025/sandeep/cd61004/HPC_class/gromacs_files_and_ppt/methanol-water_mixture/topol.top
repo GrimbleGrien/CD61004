@@ -1,0 +1,11 @@
+#include "oplsaa.ff/forcefield.itp"
+#include "oplsaa.ff/spce.itp"
+#include "methanol.itp"
+
+[ system ]
+Water+methanol
+
+[ molecules ]
+; name  number
+SOL       400
+MET       200

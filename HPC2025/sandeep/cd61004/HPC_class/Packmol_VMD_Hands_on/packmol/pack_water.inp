@@ -1,0 +1,8 @@
+tolerance 2.0
+output water_liquid.xyz
+filetype xyz
+structure water.xyz
+  number 2000
+  inside cube 0. 0. 0. 40. 40. 40.
+end structure
+

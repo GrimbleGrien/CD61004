@@ -1,0 +1,45 @@
+# This file was created Wed Apr  9 17:57:10 2025
+# Created by:
+#              :-) GROMACS - gmx energy, 2021.4-Ubuntu-2021.4-2 (-:
+# 
+# Executable:   /usr/bin/gmx
+# Data prefix:  /usr
+# Working dir:  /home/user/HPC_class/gromacs_files_and_ppt/bulk_salt_solution/nvt
+# Command line:
+#   gmx energy -f nvt.edr -o energy.xvg
+# gmx energy is part of G R O M A C S:
+#
+# Getting the Right Output Means no Artefacts in Calculating Stuff
+#
+@    title "GROMACS Energies"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "(kJ/mol)"
+@TYPE xy
+@ view 0.15, 0.15, 0.75, 0.85
+@ legend on
+@ legend box on
+@ legend loctype view
+@ legend 0.78, 0.8
+@ legend length 2
+@ s0 legend "Total Energy"
+    0.000000  -24370.095703
+    2.000000  -31191.160156
+    4.000000  -32830.589844
+    6.000000  -34716.605469
+    8.000000  -35597.484375
+   10.000000  -35616.507812
+   12.000000  -35724.050781
+   14.000000  -35574.406250
+   16.000000  -36083.367188
+   18.000000  -36062.777344
+   20.000000  -35774.781250
+   22.000000  -36184.281250
+   24.000000  -35814.812500
+   26.000000  -35615.394531
+   28.000000  -35683.078125
+   30.000000  -35706.898438
+   32.000000  -35747.210938
+   34.000000  -36265.082031
+   36.000000  -36073.640625
+   38.000000  -35782.343750
+   40.000000  -36064.097656

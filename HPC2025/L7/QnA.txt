@@ -1,0 +1,9 @@
+can u parallelize?
+1. fib(i) = fib(i-1) + fib(i-2)         ==> N
+2. x_new(i) = x_old(i-2) + x_old(i-4)   ==> Y
+3. x_new(i) = x_new(i-2) + x_new(i-4)   ==> N
+
+COOKED
+1. declare tag outside loop
+2. endif enddo
+3. mpi_comm_world, mpi_status_ignore 

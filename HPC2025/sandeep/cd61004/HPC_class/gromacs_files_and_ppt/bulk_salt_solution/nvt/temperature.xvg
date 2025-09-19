@@ -1,0 +1,45 @@
+# This file was created Wed Apr  9 18:03:37 2025
+# Created by:
+#              :-) GROMACS - gmx energy, 2021.4-Ubuntu-2021.4-2 (-:
+# 
+# Executable:   /usr/bin/gmx
+# Data prefix:  /usr
+# Working dir:  /home/user/HPC_class/gromacs_files_and_ppt/bulk_salt_solution/nvt
+# Command line:
+#   gmx energy -f nvt.edr -o temperature.xvg
+# gmx energy is part of G R O M A C S:
+#
+# Georgetown Riga Oslo Madrid Amsterdam Chisinau Stockholm
+#
+@    title "GROMACS Energies"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "(K)"
+@TYPE xy
+@ view 0.15, 0.15, 0.75, 0.85
+@ legend on
+@ legend box on
+@ legend loctype view
+@ legend 0.78, 0.8
+@ legend length 2
+@ s0 legend "Temperature"
+    0.000000  360.072693
+    2.000000  405.285614
+    4.000000  394.123322
+    6.000000  381.220764
+    8.000000  366.826538
+   10.000000  357.683228
+   12.000000  368.783600
+   14.000000  356.935547
+   16.000000  348.860443
+   18.000000  342.758850
+   20.000000  357.161682
+   22.000000  345.970398
+   24.000000  368.017975
+   26.000000  352.651520
+   28.000000  355.891724
+   30.000000  368.155121
+   32.000000  364.648407
+   34.000000  361.376923
+   36.000000  357.448639
+   38.000000  350.680359
+   40.000000  356.421783

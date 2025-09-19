@@ -1,0 +1,74 @@
+========================SERIAL===================================
+                               No. of Molecules =    12800
+                  No. of Atoms in Each Molecule =        1
+                                      Time Step =          1.0000
+                                No. of MD Steps =       10
+                            Desired Temperature =         85.0000
+                            Cubix Box Dimension =         84.6420
+                   Lennard-Jones Parameters eps =          0.2381    Sigms          3.4050
+      Cutoff for Lennard-Jones potential (RCut) =         10.0000
+                                Mass of LJ Atom =         39.9480
+
+
+
+
+Temperature is set to       85.000
+Initial potential en      -16846.98347
+        Step              PE              KE                TE 
+         1        -16847.18811        3243.08939      -13604.09872
+         2        -16847.37497        3243.27625      -13604.09873
+         3        -16847.54398        3243.44526      -13604.09871
+         4        -16847.69521        3243.59650      -13604.09871
+         5        -16847.82869        3243.72999      -13604.09870
+         6        -16847.94449        3243.84583      -13604.09866
+         7        -16848.04293        3243.94428      -13604.09865
+         8        -16848.12425        3244.02563      -13604.09862
+         9        -16848.18881        3244.09022      -13604.09859
+        10        -16848.23695        3244.13839      -13604.09856
+Time (in sec):         8.82
+
+=============================OPENMP==============================
+
+                               No. of Molecules =    12800
+                  No. of Atoms in Each Molecule =        1
+                                      Time Step =          1.0000
+                                No. of MD Steps =       10
+                            Desired Temperature =         85.0000
+                            Cubix Box Dimension =         84.6420
+                   Lennard-Jones Parameters eps =          0.2381    Sigms          3.4050
+      Cutoff for Lennard-Jones potential (RCut) =         10.0000
+                                Mass of LJ Atom =         39.9480
+
+
+
+
+Temperature is set to       85.000
+Initial potential en      -16846.98347
+        Step              PE              KE                TE 
+         1        -16847.02540        3242.88476      -13604.14064
+         2        -16846.72417        3242.88476      -13603.83941
+         3        -16846.07967        3242.88476      -13603.19492
+         4        -16845.09184        3242.88476      -13602.20708
+         5        -16843.76040        3242.88476      -13600.87564
+         6        -16842.08504        3242.88476      -13599.20028
+         7        -16840.06554        3242.88476      -13597.18078
+         8        -16837.70151        3242.88476      -13594.81675
+         9        -16834.99256        3242.88476      -13592.10780
+        10        -16831.93814        3242.88476      -13589.05338
+Time (in sec):         1.52
+
+user@acer:~/Desktop/HPC2025/argon_md_mpi_openmp$ OMP_NUM_THREADS
+OMP_NUM_THREADS: command not found
+user@acer:~/Desktop/HPC2025/argon_md_mpi_openmp$ $OMP_NUM_THREADS
+user@acer:~/Desktop/HPC2025/argon_md_mpi_openmp$ export OMP_NUM_THREADS=4
+user@acer:~/Desktop/HPC2025/argon_md_mpi_openmp$ ./mdrun md.input
+Time (in sec):         2.80
+user@acer:~/Desktop/HPC2025/argon_md_mpi_openmp$ export OMP_NUM_THREADS=8
+user@acer:~/Desktop/HPC2025/argon_md_mpi_openmp$ ./mdrun md.input
+Time (in sec):         1.87
+user@acer:~/Desktop/HPC2025/argon_md_mpi_openmp$ export OMP_NUM_THREADS=12
+user@acer:~/Desktop/HPC2025/argon_md_mpi_openmp$ ./mdrun md.input
+Time (in sec):         1.49
+user@acer:~/Desktop/HPC2025/argon_md_mpi_openmp$ export OMP_NUM_THREADS=1
+user@acer:~/Desktop/HPC2025/argon_md_mpi_openmp$ ./mdrun md.input
+Time (in sec):         8.99

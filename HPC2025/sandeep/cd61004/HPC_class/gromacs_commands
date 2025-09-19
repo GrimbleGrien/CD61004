@@ -1,0 +1,15 @@
+scp -r user@10.72.94.33:/home/user/HPC_class/gromacs_files_and_ppt/ .
+
+passwd: user123
+
+1. gmx grompp -f ../inputs/npt.mdp -c ../nvt/nvt.gro -p ../topol.top -o npt.tpr
+
+2. gmx mdrun -ntomp 4 -v -deffnm npt
+
+3. mkdir prod
+
+4. cd prod
+
+5. gmx grompp -f ../inputs/prod.mdp -c ../npt/npt.gro -p ../topol.top -o prod.tpr
+
+6. gmx mdrun -ntomp 4 -v -deffnm prod

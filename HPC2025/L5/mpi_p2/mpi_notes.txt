@@ -1,0 +1,3 @@
+1. mpi uses processes not threads
+2. sync (blocking) or async (non-blocking)
+3. point2point or collective communication

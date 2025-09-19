@@ -1,0 +1,27 @@
+                               No. of Molecules =    12800
+                  No. of Atoms in Each Molecule =        1
+                                      Time Step =          1.0000
+                                No. of MD Steps =       10
+                            Desired Temperature =         85.0000
+                            Cubix Box Dimension =         84.6420
+                   Lennard-Jones Parameters eps =          0.2381    Sigms          3.4050
+      Cutoff for Lennard-Jones potential (RCut) =         10.0000
+                                Mass of LJ Atom =         39.9480
+
+
+
+
+Temperature is set to       85.000
+Initial potential en      -16846.98347
+        Step              PE              KE                TE 
+         1        -16847.02540        3242.88476      -13604.14064
+         2        -16846.72417        3242.88476      -13603.83941
+         3        -16846.07967        3242.88476      -13603.19492
+         4        -16845.09184        3242.88476      -13602.20708
+         5        -16843.76040        3242.88476      -13600.87564
+         6        -16842.08504        3242.88476      -13599.20028
+         7        -16840.06554        3242.88476      -13597.18078
+         8        -16837.70151        3242.88476      -13594.81675
+         9        -16834.99256        3242.88476      -13592.10780
+        10        -16831.93814        3242.88476      -13589.05338
+Time (in sec):         8.99

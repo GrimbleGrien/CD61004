@@ -1,0 +1,15 @@
+user@acer:~/Desktop/HPC2025/L4$ mpif90 bcast.f90 -o bcast.exe
+user@acer:~/Desktop/HPC2025/L4$ mpirun -np 4 bcast.exe 
+result [0] = 1
+result [1] = 2
+result [2] = 3
+result [3] = 4
+
+user@acer:~/Desktop/HPC2025/L4$ mpif90 reduce.f90 -o reduce.exe
+user@acer:~/Desktop/HPC2025/L4$ mpirun -np 4 reduce.exe 
+ Global Sum:        5050
+
+user@acer:~/Desktop/HPC2025/L4$ scp user@10.72.94.33:/tmp/L1_mpi_handson.zip .
+user@10.72.94.33's password: 
+L1_mpi_handson.zip                            100%  209KB  49.4MB/s   00:00 
+

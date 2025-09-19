@@ -1,0 +1,21 @@
+1. mpi_send(data, count, dtype, dst_pid, tag, comm_world, ierr)
+2. mpi_recv(data, count, dtype, src_pid, tag, comm_world, mpi_status, ierr)
+3. send-recv topology ring (sync) -> pitfall deadlock
+
+user@acer:~/Desktop/HPC2025/L6$ mpif90 mpi_barrier.f90 -o bar
+user@acer:~/Desktop/HPC2025/L6$ mpirun -np 4 ./bar 
+ 0 ==> 1
+ 0 ==> 2
+ 0 ==> 3
+ 
+ 0 <== 1
+ 1 <== 0
+ 1 ==> 0
+ 2 <== 0
+ 2 ==> 0
+ 3 <== 0
+ 3 ==> 0
+ 0 <== 2
+ 0 <== 3
+
+inet 10.72.94.32

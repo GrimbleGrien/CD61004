@@ -1,0 +1,114 @@
+user@acer:~$ scp user@10.72.94.33:/tmp/input4.pdb .
+user@10.72.94.33's password: 
+input4.pdb                                    100%  792KB  89.5MB/s   00:00 
+user@acer:~/Documents/HPC2025AUT/L3$ mpif90 hellompi.f90 -o hello.exe
+user@acer:~/Documents/HPC2025AUT/L3$ mpirun -np 2 hello.exe
+Hello, world. - rank/totproc = 0/2
+Hello, world. - rank/totproc = 1/2
+user@acer:~/Documents/HPC2025AUT/L3$ lscpu
+Architecture:             x86_64
+  CPU op-mode(s):         32-bit, 64-bit
+  Address sizes:          46 bits physical, 48 bits virtual
+  Byte Order:             Little Endian
+CPU(s):                   12
+  On-line CPU(s) list:    0-11
+Vendor ID:                GenuineIntel
+  Model name:             12th Gen Intel(R) Core(TM) i5-12500
+    CPU family:           6
+    Model:                151
+    Thread(s) per core:   2
+    Core(s) per socket:   6
+    Socket(s):            1
+    Stepping:             5
+    CPU max MHz:          4600.0000
+    CPU min MHz:          800.0000
+    BogoMIPS:             5990.40
+    Flags:                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge m
+                          ca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 s
+                          s ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc 
+                          art arch_perfmon pebs bts rep_good nopl xtopology nons
+                          top_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq 
+                          dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma c
+                          x16 xtpr pdcm sse4_1 sse4_2 x2apic movbe popcnt tsc_de
+                          adline_timer aes xsave avx f16c rdrand lahf_lm abm 3dn
+                          owprefetch cpuid_fault epb ssbd ibrs ibpb stibp ibrs_e
+                          nhanced tpr_shadow flexpriority ept vpid ept_ad fsgsba
+                          se tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed 
+                          adx smap clflushopt clwb intel_pt sha_ni xsaveopt xsav
+                          ec xgetbv1 xsaves split_lock_detect user_shstk avx_vnn
+                          i dtherm ida arat pln pts hwp hwp_notify hwp_act_windo
+                          w hwp_epp hwp_pkg_req hfi vnmi umip pku ospke waitpkg 
+                          gfni vaes vpclmulqdq tme rdpid movdiri movdir64b fsrm 
+                          md_clear serialize pconfig arch_lbr ibt flush_l1d arch
+                          _capabilities
+Virtualization features:  
+  Virtualization:         VT-x
+Caches (sum of all):      
+  L1d:                    288 KiB (6 instances)
+  L1i:                    192 KiB (6 instances)
+  L2:                     7.5 MiB (6 instances)
+  L3:                     18 MiB (1 instance)
+NUMA:                     
+  NUMA node(s):           1
+  NUMA node0 CPU(s):      0-11
+Vulnerabilities:          
+  Gather data sampling:   Not affected
+  Itlb multihit:          Not affected
+  L1tf:                   Not affected
+  Mds:                    Not affected
+  Meltdown:               Not affected
+  Mmio stale data:        Not affected
+  Reg file data sampling: Not affected
+  Retbleed:               Not affected
+  Spec rstack overflow:   Not affected
+  Spec store bypass:      Mitigation; Speculative Store Bypass disabled via prct
+                          l
+  Spectre v1:             Mitigation; usercopy/swapgs barriers and __user pointe
+                          r sanitization
+  Spectre v2:             Mitigation; Enhanced / Automatic IBRS; IBPB conditiona
+                          l; RSB filling; PBRSB-eIBRS SW sequence; BHI BHI_DIS_S
+  Srbds:                  Not affected
+  Tsx async abort:        Not affected
+user@acer:~/Documents/HPC2025AUT/L3$ mpirun -np 4 hello.exe
+Hello, world. - rank/totproc = 1/4
+Hello, world. - rank/totproc = 2/4
+Hello, world. - rank/totproc = 0/4
+Hello, world. - rank/totproc = 3/4
+user@acer:~/Documents/HPC2025AUT/L3$ mpirun -np 6 hello.exe
+Hello, world. - rank/totproc = 0/6
+Hello, world. - rank/totproc = 2/6
+Hello, world. - rank/totproc = 5/6
+Hello, world. - rank/totproc = 3/6
+Hello, world. - rank/totproc = 4/6
+Hello, world. - rank/totproc = 1/6
+user@acer:~/Documents/HPC2025AUT/L3$ mpirun -np 8 hello.exe
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 8
+slots that were requested by the application:
+
+  hello.exe
+
+Either request fewer slots for your application, or make more slots
+available for use.
+
+A "slot" is the Open MPI term for an allocatable unit where we can
+launch a process.  The number of slots available are defined by the
+environment in which Open MPI processes are run:
+
+  1. Hostfile, via "slots=N" clauses (N defaults to number of
+     processor cores if not provided)
+  2. The --host command line parameter, via a ":N" suffix on the
+     hostname (N defaults to 1 if not provided)
+  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
+  4. If none of a hostfile, the --host command line parameter, or an
+     RM is present, Open MPI defaults to the number of processor cores
+
+In all the above cases, if you want Open MPI to default to the number
+of hardware threads instead of the number of processor cores, use the
+--use-hwthread-cpus option.
+
+Alternatively, you can use the --oversubscribe option to ignore the
+number of available slots when deciding the number of processes to
+launch.
+--------------------------------------------------------------------------
+user@acer:~/Documents/HPC2025AUT/L3$ 
