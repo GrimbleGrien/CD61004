@@ -1,52 +1,46 @@
-subroutine force_calc(TotAtom,Box,Rcut,r,Sig,Eps,Force,PE)
- use general, only: dp,atom1,atom2
- implicit none 
- integer,intent(in) :: TotAtom
- real(kind=dp),intent(in) :: r(TotAtom,3)
- real(kind=dp) :: fac2,fac6,r2,df,fc(3),dr(3),Ecut,R2cut
- real(kind=dp),intent(out) :: Force(TotAtom,3),PE
+subroutine force_calc(TotAtom, Box, Rcut, Sig, Eps, r, nlist, n_neigh, Force, PE)
+  implicit none
+  integer, intent(in) :: TotAtom
+  real(kind=8), intent(in) :: Box, Rcut, Sig, Eps
+  real(kind=8), intent(in) :: r(TotAtom,3)
+  integer, intent(in) :: nlist(TotAtom, *), n_neigh(TotAtom)
+  real(kind=8), intent(out) :: Force(TotAtom,3), PE
 
- real(kind=dp) :: Box,Rcut,Eps,Sig
+  integer :: i, j, n
+  real(kind=8) :: dx, dy, dz, r2, r6, r12, ffac, rcut2
+  real(kind=8) :: f(3)
 
- R2cut=Rcut*Rcut 
+  Force = 0.d0
+  PE = 0.d0
+  rcut2 = Rcut*Rcut
 
- ! calculating Ecut at Rcut 
- fac2=Sig*Sig/R2cut
- fac6=fac2*fac2*fac2
- Ecut=4.d0*Eps*fac6*(fac6-1)
+  do i = 1, TotAtom
+     do n = 1, n_neigh(i)
+        j = nlist(i,n)
+        if (j <= i) cycle
 
- ! calculting force and energy 
+        dx = r(i,1) - r(j,1)
+        dy = r(i,2) - r(j,2)
+        dz = r(i,3) - r(j,3)
 
+        if (dx > 0.5d0*Box) dx = dx - Box
+        if (dx < -0.5d0*Box) dx = dx + Box
+        if (dy > 0.5d0*Box) dy = dy - Box
+        if (dy < -0.5d0*Box) dy = dy + Box
+        if (dz > 0.5d0*Box) dz = dz - Box
+        if (dz < -0.5d0*Box) dz = dz + Box
 
- PE=0.d0
- Force=0.d0
- do atom1=1,TotAtom-1
-   do atom2=atom1+1,TotAtom
-     dr=r(atom1,:)-r(atom2,:)
-     dr=dr-Box*anint(dr/Box)
-     r2=dot_product(dr,dr)
-     if(r2<=R2cut) then          ! r2cut  is square of rcut  
-       r2=1/r2 
-       fac2=r2*Sig*Sig 
-       fac6=fac2*fac2*fac2 
-       df=48.d0*Eps*r2*fac6*(fac6-0.5d0)
-       fc(1)=df*dr(1)
-       fc(2)=df*dr(2)
-       fc(3)=df*dr(3)
-       Force(atom1,:)=Force(atom1,:)+fc(:) 
-       Force(atom2,:)=Force(atom2,:)-fc(:) 
-       PE=PE+4.d0*Eps*fac6*(fac6-1)-Ecut        !shifted to zero at cutoff 
-     endif 
-   enddo
- enddo 
+        r2 = dx*dx + dy*dy + dz*dz
+        if (r2 > rcut2) cycle
 
-!print
+        r6 = (Sig**2 / r2)**3
+        r12 = r6*r6
+        ffac = 48.d0*Eps*(r12 - 0.5d0*r6)/r2
+        f = ffac * (/dx, dy, dz/)
 
-! writing forces 
-! open(unit=200,file='md.force',action='write') 
-!   write(200,*)  
-! do atom1=1,TotAtom
-!   write(200,"(3F15.8)") Force(atom1,:)
-! enddo
-
-end subroutine force_calc 
+        Force(i,:) = Force(i,:) + f
+        Force(j,:) = Force(j,:) - f
+        PE = PE + 4.d0*Eps*(r12 - r6)
+     enddo
+  enddo
+end subroutine force_calc
