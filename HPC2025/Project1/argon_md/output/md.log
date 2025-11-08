@@ -1,0 +1,12 @@
+rajad@Osgiliath2126:/mnt/c/Users/rajad/ACADEMIC/CD61004/HPC2025/Project1/argon_md$ make
+gfortran  -O3  -c integrate.f90 
+gfortran  -O3  -c temp.f90 
+gfortran  -O3  -o mdrun main.o init.o force.o integrate.o temp.o  
+rajad@Osgiliath2126:/mnt/c/Users/rajad/ACADEMIC/CD61004/HPC2025/Project1/argon_md$ ./mdrun md5400.input
+Total MD runtime (sec):        10.31
+rajad@Osgiliath2126:/mnt/c/Users/rajad/ACADEMIC/CD61004/HPC2025/Project1/argon_md$ ./mdrun md1600.i
+nput
+Total MD runtime (sec):         2.09
+rajad@Osgiliath2126:/mnt/c/Users/rajad/ACADEMIC/CD61004/HPC2025/Project1/argon_md$ ./mdrun md12800.
+input
+Total MD runtime (sec):        69.61

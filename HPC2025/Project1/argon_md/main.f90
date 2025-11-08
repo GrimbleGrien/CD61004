@@ -47,7 +47,7 @@ program mainprogram
   read(1,*) Mass
   close(1)
 
-  TotAtom = Nmol * NAtom
+  TotAtom = Nmol * NAtom  ! NMolecules * NAtomsperMolecule
   open(unit=5000, file='md.out', action='write')
 
   write(5000,"(a50,I8)")  "No. of Molecules = ", Nmol
@@ -91,5 +91,6 @@ program mainprogram
 
   call cpu_time(t1)
   write(5000,"(a,2x,f10.2)") "Total MD runtime (sec): ", t1 - t0
+  write(*,"(a,2x,f10.2)") "Total MD runtime (sec): ", t1 - t0
 
 end program mainprogram
