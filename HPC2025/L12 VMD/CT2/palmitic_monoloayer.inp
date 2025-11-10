@@ -1,0 +1,30 @@
+# ===========================================================
+# Palmitic acid monolayer on a 15 Å radius sphere
+# 50 molecules, COOH facing inward, tails pointing outward
+# ===========================================================
+
+tolerance 2.0
+filetype pdb
+output palmitic_monolayer.pdb
+
+# Palmitic acid molecule definition
+structure palmitic_acid.pdb
+  number 50
+
+  # Confine molecules to a spherical shell from 15 to 17 Å
+  # (keeps them roughly on the sphere surface)
+  inside sphere 0.0 0.0 0.0 16.0
+  outside sphere 0.0 0.0 0.0 14.0
+
+  # Orientation constraints:
+  # COOH group (atoms 1–3 roughly) face the sphere center
+  # Tail (atoms 30–35) point outward from the center
+  atoms 1 3
+    inside sphere 0.0 0.0 0.0 14.5
+  end atoms
+
+  atoms 30 35
+    outside sphere 0.0 0.0 0.0 15.5
+  end atoms
+
+end structure
